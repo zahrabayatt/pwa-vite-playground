@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-985f11f4'], (function (workbox) { 'use strict';
+define(['./workbox-7a306bc2'], (function (workbox) { 'use strict';
 
   self.skipWaiting();
   workbox.clientsClaim();
@@ -82,16 +82,19 @@ define(['./workbox-985f11f4'], (function (workbox) { 'use strict';
     "revision": "3ca0b8505b4bec776b69afdba2768812"
   }, {
     "url": "index.html",
-    "revision": "0.uul7224v4k"
+    "revision": "0.5gkblno6c7g"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
-  workbox.registerRoute(/^https:\/\/fonts\.googleapis\.com\/.*/i, new workbox.CacheFirst({
+  workbox.registerRoute(/^https:\/\/jsonplaceholder\.typicode\.com\//, new workbox.CacheFirst({
     "cacheName": "api-cache",
     plugins: [new workbox.CacheableResponsePlugin({
       statuses: [0, 200]
+    }), new workbox.ExpirationPlugin({
+      maxEntries: 100,
+      maxAgeSeconds: 604800
     })]
   }), 'GET');
 

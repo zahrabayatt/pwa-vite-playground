@@ -103,12 +103,16 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,png,jpg,svg}"], // Cache JS, CSS, HTML, and assets
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            urlPattern: /^https:\/\/jsonplaceholder\.typicode\.com\//,
             handler: "CacheFirst",
             options: {
               cacheName: "api-cache",
               cacheableResponse: {
                 statuses: [0, 200],
+              },
+              expiration: {
+                maxEntries: 100, // Limit the cache size
+                maxAgeSeconds: 7 * 24 * 60 * 60, // Cache for 7 days
               },
             },
           },
