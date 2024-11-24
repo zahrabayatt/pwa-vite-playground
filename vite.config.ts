@@ -100,6 +100,7 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
+        globPatterns: ["**/*.{js,css,html,png,jpg,svg}"], // Cache JS, CSS, HTML, and assets
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -116,3 +117,7 @@ export default defineConfig({
     }),
   ],
 });
+
+// service workers are primarily designed for production environments, so some behaviors might differ slightly in dev mode.
+
+// Production Simulation: Always test with npm run build and npm run preview to ensure everything works as expected in production.
